@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
           <p className="mt-3.5 text-[var(--footer-muted)]">{footerDetails.subheading}</p>
         </div>
 
-        <nav aria-label="Links rápidos">
+        <nav aria-label={translations('quickLinks.title')}>
           <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">
             {translations('quickLinks.title')}
           </h4>
@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
             <a
               href={`mailto:${footerDetails.email}`}
               className="flex items-center gap-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
-              aria-label={`Enviar e-mail para ${footerDetails.email}`}
+              aria-label={translations('sendMail', { email: footerDetails.email })}
             >
               <FaEnvelope className="w-5 h-5" aria-hidden="true" />
               <span>{footerDetails.email}</span>
@@ -152,14 +152,14 @@ const Footer: React.FC = () => {
             <a
               href={`tel:${footerDetails.telephone}`}
               className="block mt-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
-              aria-label={`Ligar para ${footerDetails.telephone}`}
+              aria-label={translations('callTo', { phone: footerDetails.telephone })}
             >
               {translations('phone')}: {footerDetails.telephone}
             </a>
           )}
 
           {footerDetails.socials && (
-            <nav aria-label="Redes sociais" className="mt-5">
+            <nav aria-label={translations('socials')} className="mt-5">
               <ul className="flex items-center gap-5 flex-wrap" role="list">
                 {Object.entries(footerDetails.socials).map(
                   ([platformName, url]) =>

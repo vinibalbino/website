@@ -105,6 +105,9 @@
     "termsOfUse": "Termos de Uso",
     "contact": "Contato",
     "phone": "Telefone",
-    "copyright": "Todos os direitos reservados."
+    "copyright": "Todos os direitos reservados.",
+    "sendEmailTo": "Enviar e-mail para {email}",
+    "callTo": "Ligar para {phone}",
+    "socials": "Redes sociais"
   }
 }
