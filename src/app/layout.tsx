@@ -18,20 +18,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('globals.metadata')
   const locale = await getLocale()
 
+  const keywords = [
+    siteDetails.siteName,
+    ...t('keywords')
+      .split(',')
+      .map(k => k.trim()),
+  ]
+
+  console.log(keywords)
   return {
     title: t('title'),
     description: t('description'),
-    keywords: [
-      `${siteDetails.siteName}`,
-      'app',
-      'bloqueio',
-      'conteúdo',
-      'pornografia',
-      'hábitos',
-      'foco',
-      'controle',
-      'vida',
-    ],
+    keywords: keywords,
     authors: [{ name: siteDetails.siteName }],
     creator: siteDetails.siteName,
     publisher: siteDetails.siteName,
