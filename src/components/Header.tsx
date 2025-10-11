@@ -8,6 +8,7 @@ import Container from './Container'
 import { getMenuItems } from '@/data/menuItems'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { siteDetails } from '@/data/siteDetails'
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +29,7 @@ const Header: React.FC = () => {
               width="40"
               height="40"
               src="/images/diaum-logo.png"
-              alt={translation('siteName')}
+              alt={siteDetails.siteName}
               className="h-10 w-auto"
             />
           </Link>

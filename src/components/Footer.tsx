@@ -1,43 +1,43 @@
-import Link from 'next/link';
-import Script from 'next/script';
-import React from 'react';
-import Image from 'next/image';
-import { FaEnvelope } from 'react-icons/fa';
+import Link from 'next/link'
+import Script from 'next/script'
+import React from 'react'
+import Image from 'next/image'
+import { FaEnvelope } from 'react-icons/fa'
 
-import { siteDetails } from '@/data/siteDetails';
-import { footerDetails } from '@/data/footer';
-import { getPlatformIconByName } from '@/utils';
+import { siteDetails } from '@/data/siteDetails'
+import { getFooterDetails } from '@/data/footer'
+import { getPlatformIconByName } from '@/utils'
+import { useTranslations } from 'next-intl'
+import { IFooterDetails } from '@/types'
 
 type ContactPointLD = {
-  '@type': 'ContactPoint';
-  email?: string;
-  telephone?: string;
-  contactType: 'customer support' | string;
-};
+  '@type': 'ContactPoint'
+  email?: string
+  telephone?: string
+  contactType: 'customer support' | string
+}
 
 type OrganizationLD = {
-  '@context': 'https://schema.org';
-  '@type': 'Organization';
-  name: string;
-  url: string;
-  logo?: string;
-  sameAs?: string[];
-  contactPoint?: ContactPointLD[];
-};
+  '@context': 'https://schema.org'
+  '@type': 'Organization'
+  name: string
+  url: string
+  logo?: string
+  sameAs?: string[]
+  contactPoint?: ContactPointLD[]
+}
 
-function buildOrganizationJsonLd(): string {
-  const sameAs = Object.values(footerDetails.socials ?? {}).filter(
-    (v): v is string => Boolean(v)
-  );
+function buildOrganizationJsonLd(footerDetails: IFooterDetails): string {
+  const sameAs = Object.values(footerDetails.socials ?? {}).filter((v): v is string => Boolean(v))
 
-  const contactPoint: ContactPointLD[] = [];
+  const contactPoint: ContactPointLD[] = []
 
   if (footerDetails.email) {
     contactPoint.push({
       '@type': 'ContactPoint',
       email: footerDetails.email,
       contactType: 'customer support',
-    });
+    })
   }
 
   if (footerDetails.telephone) {
@@ -45,7 +45,7 @@ function buildOrganizationJsonLd(): string {
       '@type': 'ContactPoint',
       telephone: footerDetails.telephone,
       contactType: 'customer support',
-    });
+    })
   }
 
   const org: OrganizationLD = {
@@ -56,12 +56,15 @@ function buildOrganizationJsonLd(): string {
     logo: siteDetails.logoUrl,
     sameAs: sameAs.length ? sameAs : undefined,
     contactPoint: contactPoint.length ? contactPoint : undefined,
-  };
+  }
 
-  return JSON.stringify(org);
+  return JSON.stringify(org)
 }
 
 const Footer: React.FC = () => {
+  const translations = useTranslations('footer')
+  const footerDetails = getFooterDetails(translations)
+
   return (
     <footer className="bg-[var(--footer-background)] text-[var(--footer-text)]">
       <div
@@ -71,7 +74,7 @@ const Footer: React.FC = () => {
       />
 
       <Script id="org-schema" type="application/ld+json">
-        {buildOrganizationJsonLd()}
+        {buildOrganizationJsonLd(footerDetails)}
       </Script>
 
       <div className="py-10 max-w-7xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -93,32 +96,24 @@ const Footer: React.FC = () => {
               {siteDetails.siteName}
             </h3>
           </Link>
-          <p className="mt-3.5 text-[var(--footer-muted)]">
-            {footerDetails.subheading}
-          </p>
+          <p className="mt-3.5 text-[var(--footer-muted)]">{footerDetails.subheading}</p>
         </div>
 
         <nav aria-label="Links rápidos">
           <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">
-            Links Rápidos
+            {translations('quickLinks.title')}
           </h4>
           <ul className="text-[var(--footer-text)]" role="list">
-            {footerDetails.quickLinks.map((link) => (
+            {footerDetails.quickLinks.map(link => (
               <li key={link.text} className="mb-2">
-                <Link
-                  href={link.url}
-                  className="hover:text-[var(--footer-link)] transition-colors"
-                >
+                <Link href={link.url} className="hover:text-[var(--footer-link)] transition-colors">
                   {link.text}
                 </Link>
               </li>
             ))}
             <li className="mb-2">
-              <Link
-                href="/about"
-                className="hover:text-[var(--footer-link)] transition-colors"
-              >
-                Sobre
+              <Link href="/about" className="hover:text-[var(--footer-link)] transition-colors">
+                {translations('about')}
               </Link>
             </li>
             <li className="mb-2">
@@ -126,15 +121,12 @@ const Footer: React.FC = () => {
                 href="/privacy-policy"
                 className="hover:text-[var(--footer-link)] transition-colors"
               >
-                Política de Privacidade
+                {translations('privacyPolicy')}
               </Link>
             </li>
             <li className="mb-2">
-              <Link
-                href="/terms"
-                className="hover:text-[var(--footer-link)] transition-colors"
-              >
-                Termos de Uso
+              <Link href="/terms" className="hover:text-[var(--footer-link)] transition-colors">
+                {translations('termsOfUse')}
               </Link>
             </li>
           </ul>
@@ -142,7 +134,7 @@ const Footer: React.FC = () => {
 
         <div>
           <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">
-            Contato
+            {translations('contact')}
           </h4>
 
           {footerDetails.email && (
@@ -184,7 +176,7 @@ const Footer: React.FC = () => {
                           {getPlatformIconByName(platformName)}
                         </a>
                       </li>
-                    )
+                    ),
                 )}
               </ul>
             </nav>
@@ -194,12 +186,12 @@ const Footer: React.FC = () => {
 
       <div className="md:text-center text-[var(--footer-muted)] px-6 pb-8">
         <p>
-          Copyright &copy; {new Date().getFullYear()} {siteDetails.siteName}. Todos os
-          direitos reservados.
+          Copyright &copy; {new Date().getFullYear()} {siteDetails.siteName}.{' '}
+          {translations('copyright')}
         </p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

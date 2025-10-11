@@ -1,7 +1,5 @@
 {
   "globals": {
-    "siteName": "diaum",
-    "siteUrl": "https://diaum.app/",
     "metadata": {
       "title": "diaum - App de Bloqueio de Conteúdo | Livre, Focado e no Controle da Sua Vida",
       "description": "Transforme seus hábitos com o diaum - o app que bloqueia pornografia e conteúdo inadequado. Seja livre, focado e no controle da sua vida desde o Dia Um. Download gratuito!"
@@ -18,5 +16,21 @@
       "subheading": "Um App para bloquear conteudos e transformar seus hábitos e vencendo a pornografia desde o Dia Um.",
       "centerImageSrc": "/images/hero-mockup.webp"
     }
+  },
+  "footer": {
+    "subheading": "Um app para bloqueio de conteudo adulto e criaçao de novos habitos.",
+    "quickLinks": {
+      "title": "Links Rápidos",
+      "features": "Features",
+      "pricing": "Preço",
+      "testimonials": "Testemunhos"
+    },
+    "about": "Sobre",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfUse": "Termos de Uso",
+    "contact": "Contato",
+    "sendEmail": "Enviar e-mail para {email}",
+    "callPhone": "Ligar para {phone}",
+    "copyright": "Todos os direitos reservados."
   }
 }
