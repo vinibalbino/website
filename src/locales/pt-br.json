@@ -104,6 +104,10 @@
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
     "contact": "Contato",
-    "copyright": "Todos os direitos reservados."
+    "phone": "Telefone",
+    "copyright": "Todos os direitos reservados.",
+    "sendEmailTo": "Enviar e-mail para {email}",
+    "callTo": "Ligar para {phone}",
+    "socials": "Redes sociais"
   }
 }
