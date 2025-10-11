@@ -17,6 +17,80 @@
       "centerImageSrc": "/images/hero-mockup.webp"
     }
   },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "description": "Terms of Service for the Diaum app.",
+    "content": {
+      "firstParagraph": "THESE TERMS CREATE A BINDING CONTRACT.",
+      "secondParagraph": "Please read these Terms of Service (\"Terms\") carefully because they form a contract between you and Diaum app, our partners, employees, directors, sponsors, and affiliated companies (\"we\" and \"us\").",
+      "thirdParagraph": "The Diaum app is a hardware and software solution that disables features that distract users from their smartphones (the \"Diaum app\").",
+      "fourthParagraph": "By using the Diaum app, you agree to be bound by these Terms. If you are using the Services on behalf of an organization, you agree to these Terms for that organization and represent that you have the authority to bind that organization to these terms. By agreeing to these Terms, you represent that you are over 13 years of age.",
+      "fifthParagraph": "You may use the Services only in accordance with these Terms and only if you have the power to form a contract with us and are not barred under any applicable laws from doing so.",
+      "sixthParagraph": "IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS,",
+      "seventhParagraph": "YOU MUST NOT USE THE SERVICE.",
+      "sections": {
+        "1": {
+          "title": "1. FEES",
+          "text": "We charge a fee for the Diaum app. We reserve the right, at our sole discretion, to change the Fees at any time as we deem appropriate."
+        },
+        "2": {
+          "title": "2. CHANGES TO THE SERVICE",
+          "text": "We may modify these terms or any additional terms that apply to the Service. You should check the terms regularly. If you do not agree to the modified terms for a Service, you should discontinue using that Service."
+        },
+        "3": {
+          "title": "3. ACCESS TO SERVICES",
+          "paragraphs": [
+            "Only you may use the Services. You must keep your account and passwords confidential and not authorize third parties to access or use the Service on your behalf. It is your responsibility to contact us immediately if your account is hacked, compromised, or otherwise misused. You are responsible for all activities that occur under your account. We will not be liable for any loss or damage arising from any unauthorized use of your accounts.",
+            "If a third party, such as an employer, provided you with your account, that party has rights over your account and may: manage your account, reset your password, or suspend or terminate your account; view your account usage and profile data, including how and when your account is used; and read or store content in your account."
+          ]
+        },
+        "4": {
+          "title": "4. CONSENT TO ELECTRONIC COMMUNICATIONS AND SOLICITATION",
+          "paragraphs": [
+            "By registering with us, you understand that we may send communications or data regarding the Services, including but not limited to (a) notices about your use of the Services, and (b) promotional information and materials about our products and services via email. We give you the opportunity to opt out of receiving such non-mandatory emails from us by following the unsubscribe instructions provided in the message.",
+            "We may also send you, in electronic format, mandatory notices about the Service and information that we are required by law to provide. We may send required or mandatory information to you by email at the address you specified when signing up for the Service. Required or mandatory notices sent by email will be deemed given and received when the email is sent. You cannot opt out of receiving required or mandatory notices. If you do not consent to receive required or mandatory notices electronically, you must stop using the Service."
+          ]
+        },
+        "5": {
+          "title": "5. PAYMENTS AND REFUNDS",
+          "text": "You must be authorized to use the payment method you enter when creating a billing account. You authorize us to charge you for the Service using your payment method and for any paid feature of the Service you choose to subscribe to or use while these Terms are in effect. We may initiate payments (a) in advance; (b) at the time of purchase; (c) shortly after purchase; or (d) on a recurring basis for subscription Services."
+        },
+        "6": {
+          "title": "6. WARRANTY DISCLAIMER AND LIMITATION OF LIABILITY",
+          "paragraphs": [
+            "THE DIAUM APP IS PROVIDED \"AS IS\", AT YOUR OWN RISK, WITHOUT ANY EXPRESS OR IMPLIED WARRANTY OR CONDITION OF ANY KIND. WE ALSO DISCLAIM ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.",
+            "WE ARE NOT RESPONSIBLE FOR ANY DAMAGE OR DATA LOSS THAT MAY RESULT FROM THE USE OF THE DIAUM APP. WE FURTHER DISCLAIM ANY WARRANTY THAT THE CONTENT WILL BE DELIVERED FREE OF TECHNICAL FAILURE OR DEFECT OR THAT WE WILL MONITOR OR MANAGE ANY RIGHTS ASSOCIATED WITH ANY CONTENT.",
+            "IN NO EVENT SHALL WE OR OUR PARTNERS BE LIABLE FOR ANY GENERAL, DIRECT, INCIDENTAL, INDIRECT, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES IN CONNECTION WITH OR ARISING OUT OF THIS AGREEMENT, INCLUDING BUT NOT LIMITED TO ANY LOSS OF OPPORTUNITY, BUSINESS, PROFIT, REVENUE, OR ROYALTIES, REGARDLESS OF THE CAUSE AND WHETHER ARISING FROM CONTRACT, TORT, NEGLIGENCE, BREACH, OR OTHER THEORY OF LIABILITY, EVEN IF WE OR OUR PARTNERS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+          ]
+        },
+        "7": {
+          "title": "7. GOVERNING LAW, JURISDICTION, AND VENUE, AND LIMITATIONS",
+          "text": "This Agreement and its validity shall be governed by and construed in accordance with the substantive laws of the State of Wisconsin, USA, excluding its conflict of laws principles. Any dispute or claim arising out of or related to this Agreement, or its breach, shall be finally settled by arbitration administered by the American Arbitration Association in accordance with its Commercial Arbitration Rules, and judgment on the award rendered by the arbitrator(s) may be entered in any court having jurisdiction thereof. The seat of arbitration shall be the city of Madison, Wisconsin, USA."
+        },
+        "8": {
+          "title": "8. ENTIRE AGREEMENT",
+          "text": "These Terms (including the Privacy Policy) constitute the entire and exclusive agreement between you and us regarding the Service and supersede and replace any other agreements, terms, and conditions applicable to the Service. These Terms do not create any third-party beneficiary rights. Our failure to enforce a provision is not a waiver of our right to do so later."
+        },
+        "9": {
+          "title": "9. SEVERABILITY",
+          "text": "If any provision of the Terms is found unenforceable, the remaining provisions of the Terms will remain in full effect, and an enforceable term will be substituted reflecting our intent as closely as possible."
+        },
+        "10": {
+          "title": "10. RELEASE AND COVENANT NOT TO SUE",
+          "text": "To the maximum extent permitted by law, you release and agree not to sue us, our partners, our affiliated companies, and our respective directors, agents, joint ventures, employees, legal representatives, and suppliers from any and all claims, demands, and damages (actual and consequential) of every kind and nature, known and unknown, suspected and unsuspected, disclosed and undisclosed, arising out of or in any way connected with disputes between you and an event organizer. By entering into this release, you expressly waive any protections (whether statutory or otherwise) that would otherwise limit the scope of this release to include only those claims that you may know or suspect exist in your favor at the time of agreeing to this release."
+        },
+        "11": {
+          "title": "11. INDEMNIFICATION",
+          "text": "You agree to indemnify and hold us, our subsidiaries, affiliates, and their respective directors, attorneys, agents, employees, licensors, and suppliers (the “Indemnified Parties”) harmless from any claim or demand and all liabilities, costs, and expenses (including reasonable attorney fees) incurred by us and (if applicable) any Indemnified Party resulting from or arising out of your violation of any law, breach of any representation or warranty in this agreement, or violation of third-party rights, including intellectual property rights."
+        },
+        "12": {
+          "title": "12. INTELLECTUAL PROPERTY",
+          "text": "All trademarks, copyrights, software, content, know-how, proprietary technology and information, goodwill, and other intellectual property created, developed, or licensed by us are our exclusive intellectual property. Nothing herein shall create any assignment or license of our intellectual property to you or any third party."
+        }
+      },
+      "effectiveDate": "Effective date: October 10, 2025"
+    }
+  },
   "footer": {
     "subheading": "An app for blocking adult content and creating new habits.",
     "quickLinks": {
