@@ -25,7 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
       .map(k => k.trim()),
   ]
 
-  console.log(keywords)
   return {
     title: t('title'),
     description: t('description'),
