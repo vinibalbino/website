@@ -1,32 +1,28 @@
-import { IMenuItem, ISocials } from '@/types'
+import { IFooterDetails, TTranslateFunction } from '@/types'
 
-export const footerDetails: {
-  subheading: string
-  quickLinks: IMenuItem[]
-  email: string
-  telephone: string
-  socials: ISocials
-} = {
-  subheading: 'Um app para bloqueio de conteudo adulto e criaçao de novos habitos.',
-  quickLinks: [
-    {
-      text: 'Features',
-      url: '#features',
+export function getFooterDetails(t: TTranslateFunction): IFooterDetails {
+  return {
+    subheading: t('subheading'),
+    quickLinks: [
+      {
+        text: t('quickLinks.features'),
+        url: '#features',
+      },
+      {
+        text: t('quickLinks.pricing'),
+        url: '#pricing',
+      },
+      {
+        text: t('quickLinks.testimonials'),
+        url: '#testimonials',
+      },
+    ],
+    email: 'contato@diaum.app',
+    telephone: '',
+    socials: {
+      github: 'https://github.com/Diaum',
+      linkedin: 'https://www.linkedin.com',
+      instagram: 'https://www.instagram.com/diaum.app',
     },
-    {
-      text: 'Pricing',
-      url: '#pricing',
-    },
-    {
-      text: 'Testimonials',
-      url: '#testimonials',
-    },
-  ],
-  email: 'contato@diaum.app',
-  telephone: '',
-  socials: {
-    github: 'https://github.com/Diaum',
-    linkedin: 'https://www.linkedin.com',
-    instagram: 'https://www.instagram.com/diaum.app',
-  },
+  }
 }
