@@ -7,7 +7,7 @@ import PlayStoreButton from './PlayStoreButton'
 import { useTranslations } from 'next-intl'
 
 const Hero: React.FC = () => {
-  const translation = useTranslations('HomePage.HeroComponent')
+  const translation = useTranslations('homePage.heroComponent')
 
   return (
     <section
