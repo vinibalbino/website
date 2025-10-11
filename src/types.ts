@@ -51,3 +51,5 @@ export interface ISocials {
   x?: string
   [key: string]: string | undefined
 }
+
+export type TTranslateFunction = (string: string) => string
