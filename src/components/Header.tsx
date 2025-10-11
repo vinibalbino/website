@@ -25,7 +25,7 @@ const Header: React.FC = () => {
             <Image
               width="40"
               height="40"
-              src="/images/diaum-logo.png" 
+              src="/images/diaum-logo.png"
               alt={siteDetails.siteName}
               className="h-10 w-auto"
             />

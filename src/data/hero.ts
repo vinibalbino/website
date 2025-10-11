@@ -1,6 +1,0 @@
-export const heroDetails = {
-  heading: 'Livre, Focado e no Controle da Sua Vida.',
-  subheading:
-    'Um App para bloquear conteudos e transformar seus hábitos e vencendo a pornografia desde o Dia Um.',
-  centerImageSrc: '/images/hero-mockup.webp',
-}
