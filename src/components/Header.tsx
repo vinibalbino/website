@@ -5,12 +5,15 @@ import React, { useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { HiOutlineXMark, HiBars3 } from 'react-icons/hi2'
 import Container from './Container'
-import { siteDetails } from '@/data/siteDetails'
-import { menuItems } from '@/data/menuItems'
+import { getMenuItems } from '@/data/menuItems'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import { siteDetails } from '@/data/siteDetails'
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const translation = useTranslations('header')
+  const menuItems = getMenuItems(translation)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -25,7 +28,7 @@ const Header: React.FC = () => {
             <Image
               width="40"
               height="40"
-              src="/images/diaum-logo.png" 
+              src="/images/diaum-logo.png"
               alt={siteDetails.siteName}
               className="h-10 w-auto"
             />

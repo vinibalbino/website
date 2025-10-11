@@ -51,3 +51,13 @@ export interface ISocials {
   x?: string
   [key: string]: string | undefined
 }
+
+export type TTranslateFunction = (string: string) => string
+
+export interface IFooterDetails {
+  subheading: string
+  quickLinks: IMenuItem[]
+  email: string
+  telephone: string
+  socials: ISocials
+}

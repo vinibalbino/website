@@ -5,8 +5,10 @@ import Image from 'next/image'
 import { FaEnvelope } from 'react-icons/fa'
 
 import { siteDetails } from '@/data/siteDetails'
-import { footerDetails } from '@/data/footer'
+import { getFooterDetails } from '@/data/footer'
 import { getPlatformIconByName } from '@/utils'
+import { useTranslations } from 'next-intl'
+import { IFooterDetails } from '@/types'
 
 type ContactPointLD = {
   '@type': 'ContactPoint'
@@ -25,7 +27,7 @@ type OrganizationLD = {
   contactPoint?: ContactPointLD[]
 }
 
-function buildOrganizationJsonLd(): string {
+function buildOrganizationJsonLd(footerDetails: IFooterDetails): string {
   const sameAs = Object.values(footerDetails.socials ?? {}).filter((v): v is string => Boolean(v))
 
   const contactPoint: ContactPointLD[] = []
@@ -60,6 +62,9 @@ function buildOrganizationJsonLd(): string {
 }
 
 const Footer: React.FC = () => {
+  const translations = useTranslations('footer')
+  const footerDetails = getFooterDetails(translations)
+
   return (
     <footer className="bg-[var(--footer-background)] text-[var(--footer-text)]">
       <div
@@ -69,7 +74,7 @@ const Footer: React.FC = () => {
       />
 
       <Script id="org-schema" type="application/ld+json">
-        {buildOrganizationJsonLd()}
+        {buildOrganizationJsonLd(footerDetails)}
       </Script>
 
       <div className="py-10 max-w-7xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -94,8 +99,10 @@ const Footer: React.FC = () => {
           <p className="mt-3.5 text-[var(--footer-muted)]">{footerDetails.subheading}</p>
         </div>
 
-        <nav aria-label="Links rápidos">
-          <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">Links Rápidos</h4>
+        <nav aria-label={translations('quickLinks.title')}>
+          <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">
+            {translations('quickLinks.title')}
+          </h4>
           <ul className="text-[var(--footer-text)]" role="list">
             {footerDetails.quickLinks.map(link => (
               <li key={link.text} className="mb-2">
@@ -106,7 +113,7 @@ const Footer: React.FC = () => {
             ))}
             <li className="mb-2">
               <Link href="/about" className="hover:text-[var(--footer-link)] transition-colors">
-                Sobre
+                {translations('about')}
               </Link>
             </li>
             <li className="mb-2">
@@ -114,25 +121,27 @@ const Footer: React.FC = () => {
                 href="/privacy-policy"
                 className="hover:text-[var(--footer-link)] transition-colors"
               >
-                Política de Privacidade
+                {translations('privacyPolicy')}
               </Link>
             </li>
             <li className="mb-2">
               <Link href="/terms" className="hover:text-[var(--footer-link)] transition-colors">
-                Termos de Uso
+                {translations('termsOfUse')}
               </Link>
             </li>
           </ul>
         </nav>
 
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">Contato</h4>
+          <h4 className="text-lg font-semibold mb-4 text-[var(--footer-link)]">
+            {translations('contact')}
+          </h4>
 
           {footerDetails.email && (
             <a
               href={`mailto:${footerDetails.email}`}
               className="flex items-center gap-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
-              aria-label={`Enviar e-mail para ${footerDetails.email}`}
+              aria-label={translations('sendEmailTo', { email: footerDetails.email })}
             >
               <FaEnvelope className="w-5 h-5" aria-hidden="true" />
               <span>{footerDetails.email}</span>
@@ -143,14 +152,14 @@ const Footer: React.FC = () => {
             <a
               href={`tel:${footerDetails.telephone}`}
               className="block mt-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
-              aria-label={`Ligar para ${footerDetails.telephone}`}
+              aria-label={translations('callTo', { phone: footerDetails.telephone })}
             >
-              Telefone: {footerDetails.telephone}
+              {translations('phone')}: {footerDetails.telephone}
             </a>
           )}
 
           {footerDetails.socials && (
-            <nav aria-label="Redes sociais" className="mt-5">
+            <nav aria-label={translations('socials')} className="mt-5">
               <ul className="flex items-center gap-5 flex-wrap" role="list">
                 {Object.entries(footerDetails.socials).map(
                   ([platformName, url]) =>
@@ -177,8 +186,8 @@ const Footer: React.FC = () => {
 
       <div className="md:text-center text-[var(--footer-muted)] px-6 pb-8">
         <p>
-          Copyright &copy; {new Date().getFullYear()} {siteDetails.siteName}. Todos os direitos
-          reservados.
+          Copyright &copy; {new Date().getFullYear()} {siteDetails.siteName}.{' '}
+          {translations('copyright')}
         </p>
       </div>
     </footer>
