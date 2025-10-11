@@ -1,4 +1,3 @@
-
 # README para Primeiros Colaboradores - Diaum
 
 > **Bem-vindo ao projeto Diaum!** 🎉  
@@ -38,7 +37,10 @@ Antes de começar, certifique-se de ter instalado:
 diaum/
 ├── src/
 │   ├── app/             # Páginas e rotas (Next.js App Router)
+│   │   ├── [locale]/    # Páginas da aplicação que são localizadas
 │   ├── components/      # Componentes React reutilizáveis
+│   ├── locales/         # Textos de localização
+│   ├── i18n/            # Configurações da localização como routing e definição de linguagem
 │   ├── data/            # Dados e configurações
 │   │   ├── siteDetails.ts
 │   │   └── ...
@@ -50,7 +52,7 @@ diaum/
 
 ### Pastas Principais
 
-- **`/src/app`**: Contém as páginas e rotas do site
+- **`/src/app/[locale]`**: Contém as páginas e rotas do site
 - **`/src/components`**: Componentes React modulares e reutilizáveis
 - **`/src/data`**: Arquivos de configuração e dados do site
 - **`/public`**: Assets estáticos (imagens, ícones, etc.)
@@ -82,6 +84,7 @@ O site Diaum possui as seguintes seções:
    - Clone seu fork localmente
 
 2. **Crie uma Nova Branch**
+
    ```bash
    git checkout -b feature/nova-secao
    # ou
@@ -94,12 +97,14 @@ O site Diaum possui as seguintes seções:
    - Certifique-se de que não quebrou funcionalidades existentes
 
 4. **Commit suas Mudanças**
+
    ```bash
    git add .
    git commit -m "feat: adiciona nova seção de componentes"
    ```
 
 5. **Push para seu Fork**
+
    ```bash
    git push origin feature/nova-secao
    ```
@@ -129,7 +134,7 @@ O site Diaum possui as seguintes seções:
 
 ## 🚀 Deploy
 
-A forma mais rápida de fazer deploy do Diaum é no [Vercel](https://vercel.com/). 
+A forma mais rápida de fazer deploy do Diaum é no [Vercel](https://vercel.com/).
 
 Consulte a [documentação de deploy do Next.js](https://vercel.com/docs/deployments/deployment-methods) para outras opções de deployment.
 
@@ -155,11 +160,13 @@ Consulte a [documentação de deploy do Next.js](https://vercel.com/docs/deploym
 ## ❓ Dúvidas Frequentes
 
 ### Como faço para rodar os testes?
+
 ```bash
 npm test
 ```
 
 ### Como faço o build de produção?
+
 ```bash
 npm run build
 ```
@@ -167,6 +174,7 @@ npm run build
 ### Como reporto um bug?
 
 Abra uma issue no GitHub com:
+
 - Descrição clara do problema
 - Passos para reproduzir
 - Comportamento esperado vs. atual
