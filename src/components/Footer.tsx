@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
             <a
               href={`mailto:${footerDetails.email}`}
               className="flex items-center gap-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
-              aria-label={translations('sendMail', { email: footerDetails.email })}
+              aria-label={translations('sendEmailTo', { email: footerDetails.email })}
             >
               <FaEnvelope className="w-5 h-5" aria-hidden="true" />
               <span>{footerDetails.email}</span>
