@@ -53,7 +53,7 @@ function buildOrganizationJsonLd(footerDetails: IFooterDetails): string {
     '@type': 'Organization',
     name: siteDetails.siteName,
     url: siteDetails.siteUrl,
-    logo: siteDetails.logoUrl,
+    logo: siteDetails.siteLogo,
     sameAs: sameAs.length ? sameAs : undefined,
     contactPoint: contactPoint.length ? contactPoint : undefined,
   }
