@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
               className="block mt-2 text-[var(--footer-text)] hover:text-[var(--footer-link)] transition-colors"
               aria-label={`Ligar para ${footerDetails.telephone}`}
             >
-              Telefone: {footerDetails.telephone}
+              {translations('phone')}: {footerDetails.telephone}
             </a>
           )}
 
