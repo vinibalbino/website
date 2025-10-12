@@ -24,11 +24,11 @@ export const fetchPages = React.cache(async () => {
       database_id: process.env.NOTION_DATABASE_ID!,
     })
 
-    // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
+    // Filtrar apenas páginas com status "Concluído" no código
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
-      // Por enquanto, mostrar todos os posts independente do status
-      return true
+      // Mostrar posts com status "Concluído" ou todos se não houver filtro
+      return status === 'Concluído' || status === null
     })
 
     return {
