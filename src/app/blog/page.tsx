@@ -48,6 +48,14 @@ export default async function BlogPage() {
                     <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                   )}
 
+                  {post.author && (
+                    <div className="mb-4">
+                      <p className="text-sm text-gray-500">
+                        Por <span className="font-medium text-gray-700">{post.author}</span>
+                      </p>
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between">
                     <time className="text-sm text-gray-500">
                       {new Date(post.publishedAt).toLocaleDateString('pt-BR')}

@@ -40,6 +40,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </a>
         </nav>
 
+        {/* Imagem de capa */}
+        {post.cover && (
+          <div className="mb-8">
+            <img
+              src={post.cover}
+              alt={post.title}
+              className="w-full h-64 object-cover rounded-lg shadow-md"
+            />
+          </div>
+        )}
+
         {/* Header do artigo */}
         <header className="mb-12">
           {post.tags && post.tags.length > 0 && (
@@ -72,6 +83,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="prose prose-lg max-w-none">
           <NotionRenderer blocks={blocks} />
         </article>
+
+        {/* Card do autor */}
+        {post.author && (
+          <div className="mt-12 p-6 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+            <div className="flex items-center">
+              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                {post.author.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Escrito por</p>
+                <p className="text-xl font-semibold text-gray-900">{post.author}</p>
+                <p className="text-sm text-gray-500 mt-1">
+                  Publicado em {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

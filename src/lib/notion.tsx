@@ -91,6 +91,7 @@ export interface BlogPost {
   slug: string
   excerpt?: string
   cover?: string
+  author?: string
   publishedAt: string
   tags?: string[]
 }
@@ -104,7 +105,8 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     title: getPropertyValue(properties, 'Title') || 'Sem título',
     slug: getPropertyValue(properties, 'slug') || '',
     excerpt: getPropertyValue(properties, 'excerpt'),
-    cover: getPropertyValue(properties, 'cover'),
+    cover: getPropertyValue(properties, 'Cover') || '',
+    author: getPropertyValue(properties, 'Author') || '',
     publishedAt: getPropertyValue(properties, 'Date') || new Date().toISOString(),
     tags: getPropertyValue(properties, 'Tags') || [],
   }
