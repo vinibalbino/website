@@ -134,7 +134,7 @@ function getPropertyValue(properties: any, key: string): any {
     case 'select':
       return prop.select?.name || ''
     case 'multi_select':
-      return prop.multi_select?.map((item: any) => item.name) || []
+      return prop.multi_select?.map((item: { name: string }) => item.name) || []
     case 'date':
       return prop.date?.start || ''
     case 'files':
