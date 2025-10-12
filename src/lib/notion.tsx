@@ -24,17 +24,22 @@ export const fetchPages = React.cache(async () => {
       database_id: process.env.NOTION_DATABASE_ID!,
     })
     
+    console.log('📊 Total de páginas encontradas:', response.results.length)
+    
     // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
+      console.log('🔍 Status da página:', status, 'Título:', getPropertyValue(page.properties, 'title'))
       // Se não há propriedade Status, mostrar todos os posts
       if (status === null) return true
       return status === 'Live'
     })
     
+    console.log('✅ Páginas filtradas:', livePages.length)
+    
     return {
       ...response,
-      results: livePages
+      results: livePages,
     }
   } catch (error) {
     console.error('Erro ao buscar páginas:', error)
@@ -99,8 +104,8 @@ export interface BlogPost {
 // Função para extrair propriedades de uma página do Notion
 export function extractBlogPost(page: PageObjectResponse): BlogPost {
   const properties = page.properties
-
-  return {
+  
+  const post = {
     id: page.id,
     title: getPropertyValue(properties, 'title') || 'Sem título',
     slug: getPropertyValue(properties, 'slug') || '',
@@ -109,6 +114,9 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     publishedAt: getPropertyValue(properties, 'publishedAt') || page.created_time,
     tags: getPropertyValue(properties, 'tags') || [],
   }
+  
+  console.log('📝 Post extraído:', post)
+  return post
 }
 
 // Função auxiliar para extrair valores das propriedades
@@ -139,6 +147,8 @@ function getPropertyValue(properties: any, key: string): any {
       return prop.number || 0
     case 'checkbox':
       return prop.checkbox || false
+    case 'status':
+      return prop.status?.name || ''
     default:
       console.warn(`Tipo de propriedade não suportado: ${prop.type}`)
       return null
