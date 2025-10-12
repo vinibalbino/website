@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { fetchPages, extractBlogPost, BlogPost } from '@/lib/notion'
+import { fetchPages, extractBlogPost } from '@/lib/notion'
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export default async function BlogPage() {
