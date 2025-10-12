@@ -28,7 +28,13 @@ export default async function BlogPage() {
               >
                 {post.cover && (
                   <div className="aspect-video bg-gray-200">
-                    <Image src={post.cover} alt={post.title} width={400} height={225} className="w-full h-full object-cover" />
+                    <Image
+                      src={post.cover}
+                      alt={post.title}
+                      width={400}
+                      height={225}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 )}
 
