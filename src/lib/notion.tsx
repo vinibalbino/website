@@ -24,16 +24,12 @@ export const fetchPages = React.cache(async () => {
       database_id: process.env.NOTION_DATABASE_ID!,
     })
 
-    console.log('📊 Total de páginas encontradas:', response.results.length)
-
     // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
       // Por enquanto, mostrar todos os posts independente do status
       return true
     })
-
-    console.log('✅ Páginas filtradas:', livePages.length)
 
     return {
       ...response,
@@ -109,7 +105,7 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     slug: getPropertyValue(properties, 'slug') || '',
     excerpt: getPropertyValue(properties, 'excerpt'),
     cover: getPropertyValue(properties, 'cover'),
-    publishedAt: getPropertyValue(properties, 'Date') || page.created_time,
+    publishedAt: getPropertyValue(properties, 'Date') || new Date().toISOString(),
     tags: getPropertyValue(properties, 'Tags') || [],
   }
 
@@ -149,7 +145,6 @@ function getPropertyValue(properties: any, key: string): any {
     case 'status':
       return prop.status?.name || ''
     default:
-      console.warn(`Tipo de propriedade não suportado: ${prop.type}`)
       return null
   }
 }
