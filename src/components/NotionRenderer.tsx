@@ -143,7 +143,14 @@ function NotionBlock({ block }: { block: BlockObjectResponse }) {
   }
 }
 
-function getTextStyles(annotations: Record<string, any>): string {
+function getTextStyles(annotations: {
+  bold?: boolean
+  italic?: boolean
+  strikethrough?: boolean
+  underline?: boolean
+  code?: boolean
+  color?: string
+}): string {
   let styles = ''
 
   if (annotations.bold) styles += ' font-bold'

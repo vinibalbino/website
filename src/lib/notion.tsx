@@ -108,7 +108,8 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
   return post
 }
 
-function getAuthorAvatar(properties: Record<string, any>, key: string): string {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getAuthorAvatar(properties: any, key: string): string {
   const prop = properties[key]
   if (!prop || prop.type !== 'people' || !prop.people?.[0]) {
     return ''
@@ -118,7 +119,8 @@ function getAuthorAvatar(properties: Record<string, any>, key: string): string {
   return person.avatar_url || person.person?.avatar_url || ''
 }
 
-function getPropertyValue(properties: Record<string, any>, key: string): any {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getPropertyValue(properties: any, key: string): any {
   const prop = properties[key]
   if (!prop) {
     return null
