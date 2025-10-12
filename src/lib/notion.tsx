@@ -19,16 +19,23 @@ export const fetchPages = React.cache(async () => {
   }
 
   try {
+    // Buscar todas as páginas primeiro
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
-      filter: {
-        property: 'Status',
-        select: {
-          equals: 'Live',
-        },
-      },
     })
-    return response
+    
+    // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
+    const livePages = response.results.filter((page: any) => {
+      const status = getPropertyValue(page.properties, 'Status')
+      // Se não há propriedade Status, mostrar todos os posts
+      if (status === null) return true
+      return status === 'Live'
+    })
+    
+    return {
+      ...response,
+      results: livePages
+    }
   } catch (error) {
     console.error('Erro ao buscar páginas:', error)
     throw new Error('Falha ao conectar com o Notion. Verifique suas credenciais.')
