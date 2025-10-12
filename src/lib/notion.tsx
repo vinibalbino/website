@@ -111,6 +111,13 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     tags: getPropertyValue(properties, 'Tags') || [],
   }
 
+  // Debug temporário para verificar Author
+  console.log('🔍 Debug Author:', {
+    authorRaw: properties.Author,
+    authorExtracted: post.author,
+    allProperties: Object.keys(properties)
+  })
+
   return post
 }
 
