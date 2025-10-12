@@ -44,7 +44,7 @@ jobs:
             -d "{\"serviceId\": \"${{ steps.env.outputs.render_service_id }}\"}" \
             https://api.render.com/v1/services/${{ steps.env.outputs.render_service_id }}/deploys
 
-            - name: Mark deployment as successful
+      - name: Mark deployment as successful
         if: success()
         uses: chrnorm/deployment-status@v2
         with:
