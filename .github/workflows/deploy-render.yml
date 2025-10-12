@@ -50,7 +50,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: success
-          deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
+          deployment-id: ${{ steps.create_deploy.outputs.deployment-id }}
           environment-url: ${{ steps.env.outputs.env_url }}
 
       - name: Mark deployment as failed
@@ -59,4 +59,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: failure
-          deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
+          deployment-id: ${{ steps.create_deploy.outputs.deployment-id }}
