@@ -49,7 +49,18 @@ export default async function BlogPage() {
                   )}
 
                   {post.author && (
-                    <div className="mb-4">
+                    <div className="mb-4 flex items-center">
+                      {post.authorAvatar ? (
+                        <img
+                          src={post.authorAvatar}
+                          alt={post.author}
+                          className="w-6 h-6 rounded-full mr-2 object-cover"
+                        />
+                      ) : (
+                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2">
+                          {post.author.charAt(0).toUpperCase()}
+                        </div>
+                      )}
                       <p className="text-sm text-gray-500">
                         Por <span className="font-medium text-gray-700">{post.author}</span>
                       </p>

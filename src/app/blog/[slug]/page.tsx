@@ -88,14 +88,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {post.author && (
           <div className="mt-12 p-6 bg-gray-50 rounded-lg border-l-4 border-blue-500">
             <div className="flex items-center">
-              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
-                {post.author.charAt(0).toUpperCase()}
-              </div>
+              {post.authorAvatar ? (
+                <img
+                  src={post.authorAvatar}
+                  alt={post.author}
+                  className="w-16 h-16 rounded-full mr-6 object-cover"
+                />
+              ) : (
+                <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                  {post.author.charAt(0).toUpperCase()}
+                </div>
+              )}
               <div>
                 <p className="text-sm text-gray-600 mb-1">Escrito por</p>
                 <p className="text-xl font-semibold text-gray-900">{post.author}</p>
                 <p className="text-sm text-gray-500 mt-1">
-                  Publicado em {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+                  Publicado em{' '}
+                  {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

@@ -92,6 +92,7 @@ export interface BlogPost {
   excerpt?: string
   cover?: string
   author?: string
+  authorAvatar?: string
   publishedAt: string
   tags?: string[]
 }
@@ -107,11 +108,23 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     excerpt: getPropertyValue(properties, 'excerpt'),
     cover: getPropertyValue(properties, 'Cover') || '',
     author: getPropertyValue(properties, 'Author') || '',
+    authorAvatar: getAuthorAvatar(properties, 'Author') || '',
     publishedAt: getPropertyValue(properties, 'Date') || new Date().toISOString(),
     tags: getPropertyValue(properties, 'Tags') || [],
   }
 
   return post
+}
+
+// Função auxiliar para extrair avatar do autor
+function getAuthorAvatar(properties: any, key: string): string {
+  const prop = properties[key]
+  if (!prop || prop.type !== 'people' || !prop.people?.[0]) {
+    return ''
+  }
+  
+  const person = prop.people[0]
+  return person.avatar_url || person.person?.avatar_url || ''
 }
 
 // Função auxiliar para extrair valores das propriedades
