@@ -29,16 +29,6 @@ export const fetchPages = React.cache(async () => {
     // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
-      console.log(
-        '🔍 Status da página:',
-        status,
-        'Título:',
-        getPropertyValue(page.properties, 'title'),
-      )
-      
-      // Debug: mostrar todas as propriedades disponíveis
-      console.log('📋 Propriedades disponíveis:', Object.keys(page.properties))
-      
       // Por enquanto, mostrar todos os posts independente do status
       return true
     })
@@ -115,15 +105,14 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
 
   const post = {
     id: page.id,
-    title: getPropertyValue(properties, 'title') || 'Sem título',
+    title: getPropertyValue(properties, 'Title') || 'Sem título',
     slug: getPropertyValue(properties, 'slug') || '',
     excerpt: getPropertyValue(properties, 'excerpt'),
     cover: getPropertyValue(properties, 'cover'),
-    publishedAt: getPropertyValue(properties, 'publishedAt') || page.created_time,
-    tags: getPropertyValue(properties, 'tags') || [],
+    publishedAt: getPropertyValue(properties, 'Date') || page.created_time,
+    tags: getPropertyValue(properties, 'Tags') || [],
   }
 
-  console.log('📝 Post extraído:', post)
   return post
 }
 
@@ -131,11 +120,8 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
 function getPropertyValue(properties: any, key: string): any {
   const prop = properties[key]
   if (!prop) {
-    console.log(`⚠️ Propriedade '${key}' não encontrada`)
     return null
   }
-
-  console.log(`🔍 Propriedade '${key}':`, prop.type, prop)
 
   switch (prop.type) {
     case 'title':
