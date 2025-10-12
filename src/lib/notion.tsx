@@ -111,13 +111,6 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     tags: getPropertyValue(properties, 'Tags') || [],
   }
 
-  // Debug temporário para verificar Author
-  console.log('🔍 Debug Author:', {
-    authorRaw: properties.Author,
-    authorExtracted: post.author,
-    allProperties: Object.keys(properties)
-  })
-
   return post
 }
 
@@ -153,6 +146,8 @@ function getPropertyValue(properties: any, key: string): any {
       return prop.checkbox || false
     case 'status':
       return prop.status?.name || ''
+    case 'people':
+      return prop.people?.[0]?.name || ''
     default:
       return null
   }
