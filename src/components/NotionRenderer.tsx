@@ -1,4 +1,5 @@
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import Image from 'next/image'
 
 interface NotionRendererProps {
   blocks: BlockObjectResponse[]
@@ -108,9 +109,11 @@ function NotionBlock({ block }: { block: BlockObjectResponse }) {
 
       return (
         <div className="my-6">
-          <img
+          <Image
             src={imageUrl}
             alt="Imagem do artigo"
+            width={800}
+            height={400}
             className="w-full h-auto rounded-lg shadow-md"
           />
         </div>
@@ -140,7 +143,7 @@ function NotionBlock({ block }: { block: BlockObjectResponse }) {
   }
 }
 
-function getTextStyles(annotations: any): string {
+function getTextStyles(annotations: Record<string, any>): string {
   let styles = ''
 
   if (annotations.bold) styles += ' font-bold'

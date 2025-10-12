@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import Image from 'next/image'
 import { fetchBySlug, fetchPageBlocks, extractBlogPost } from '@/lib/notion'
 import { NotionRenderer } from '../../../components/NotionRenderer'
 
@@ -41,9 +41,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {post.cover && (
           <div className="mb-8">
-            <img
+            <Image
               src={post.cover}
               alt={post.title}
+              width={800}
+              height={256}
               className="w-full h-64 object-cover rounded-lg shadow-md"
             />
           </div>
@@ -84,9 +86,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mt-12 p-6 bg-gray-50 rounded-lg border-l-4 border-blue-500">
             <div className="flex items-center">
               {post.authorAvatar ? (
-                <img
+                <Image
                   src={post.authorAvatar}
                   alt={post.author}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 rounded-full mr-6 object-cover"
                 />
               ) : (

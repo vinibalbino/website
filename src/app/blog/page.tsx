@@ -1,10 +1,14 @@
 import Link from 'next/link'
-import { fetchPages, extractBlogPost } from '@/lib/notion'
+import Image from 'next/image'
+import { fetchPages, extractBlogPost, BlogPost } from '@/lib/notion'
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export default async function BlogPage() {
   try {
     const response = await fetchPages()
-    const posts = response.results.map((page: any) => extractBlogPost(page))
+    const posts = response.results
+      .filter((page): page is PageObjectResponse => page.object === 'page')
+      .map((page: PageObjectResponse) => extractBlogPost(page))
 
     return (
       <div className="min-h-screen bg-white">
@@ -24,7 +28,7 @@ export default async function BlogPage() {
               >
                 {post.cover && (
                   <div className="aspect-video bg-gray-200">
-                    <img src={post.cover} alt={post.title} className="w-full h-full object-cover" />
+                    <Image src={post.cover} alt={post.title} width={400} height={225} className="w-full h-full object-cover" />
                   </div>
                 )}
 
@@ -51,9 +55,11 @@ export default async function BlogPage() {
                   {post.author && (
                     <div className="mb-4 flex items-center">
                       {post.authorAvatar ? (
-                        <img
+                        <Image
                           src={post.authorAvatar}
                           alt={post.author}
+                          width={24}
+                          height={24}
                           className="w-6 h-6 rounded-full mr-2 object-cover"
                         />
                       ) : (
@@ -92,7 +98,7 @@ export default async function BlogPage() {
         </div>
       </div>
     )
-  } catch (error) {
+  } catch {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="max-w-md mx-auto text-center px-4">

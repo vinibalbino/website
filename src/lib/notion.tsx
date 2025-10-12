@@ -21,7 +21,8 @@ export const fetchPages = React.cache(async () => {
       database_id: process.env.NOTION_DATABASE_ID!,
     })
 
-    const livePages = response.results.filter((page: any) => {
+    const livePages = response.results.filter((page): page is PageObjectResponse => {
+      if (page.object !== 'page' || !('properties' in page)) return false
       const status = getPropertyValue(page.properties, 'Status')
       return status === 'Publicado' || status === null
     })
@@ -107,7 +108,7 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
   return post
 }
 
-function getAuthorAvatar(properties: any, key: string): string {
+function getAuthorAvatar(properties: Record<string, any>, key: string): string {
   const prop = properties[key]
   if (!prop || prop.type !== 'people' || !prop.people?.[0]) {
     return ''
@@ -117,7 +118,7 @@ function getAuthorAvatar(properties: any, key: string): string {
   return person.avatar_url || person.person?.avatar_url || ''
 }
 
-function getPropertyValue(properties: any, key: string): any {
+function getPropertyValue(properties: Record<string, any>, key: string): any {
   const prop = properties[key]
   if (!prop) {
     return null
