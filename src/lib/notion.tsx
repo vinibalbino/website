@@ -3,14 +3,12 @@ import { BlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/
 import React from 'react'
 import 'server-only'
 
-// Configuração do cliente Notion com versão da API
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
-  notionVersion: '2022-06-28', // Especificar versão da API
+  notionVersion: '2022-06-28',
 })
 
 export const fetchPages = React.cache(async () => {
-  // Validar configuração
   if (!process.env.NOTION_TOKEN) {
     throw new Error('NOTION_TOKEN não encontrado nas variáveis de ambiente')
   }
@@ -19,15 +17,12 @@ export const fetchPages = React.cache(async () => {
   }
 
   try {
-    // Buscar todas as páginas primeiro
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
     })
 
-    // Filtrar apenas páginas com status "Concluído" no código
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
-      // Mostrar posts com status "Concluído" ou todos se não houver filtro
       return status === 'Concluído' || status === null
     })
 
@@ -42,7 +37,6 @@ export const fetchPages = React.cache(async () => {
 })
 
 export const fetchBySlug = React.cache(async (slug: string) => {
-  // Validar configuração
   if (!process.env.NOTION_TOKEN) {
     throw new Error('NOTION_TOKEN não encontrado nas variáveis de ambiente')
   }
@@ -68,7 +62,6 @@ export const fetchBySlug = React.cache(async (slug: string) => {
 })
 
 export const fetchPageBlocks = React.cache(async (pageId: string) => {
-  // Validar configuração
   if (!process.env.NOTION_TOKEN) {
     throw new Error('NOTION_TOKEN não encontrado nas variáveis de ambiente')
   }
@@ -84,7 +77,6 @@ export const fetchPageBlocks = React.cache(async (pageId: string) => {
   }
 })
 
-// Tipos para o blog
 export interface BlogPost {
   id: string
   title: string
@@ -97,7 +89,6 @@ export interface BlogPost {
   tags?: string[]
 }
 
-// Função para extrair propriedades de uma página do Notion
 export function extractBlogPost(page: PageObjectResponse): BlogPost {
   const properties = page.properties
 
@@ -116,7 +107,6 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
   return post
 }
 
-// Função auxiliar para extrair avatar do autor
 function getAuthorAvatar(properties: any, key: string): string {
   const prop = properties[key]
   if (!prop || prop.type !== 'people' || !prop.people?.[0]) {
@@ -127,7 +117,6 @@ function getAuthorAvatar(properties: any, key: string): string {
   return person.avatar_url || person.person?.avatar_url || ''
 }
 
-// Função auxiliar para extrair valores das propriedades
 function getPropertyValue(properties: any, key: string): any {
   const prop = properties[key]
   if (!prop) {

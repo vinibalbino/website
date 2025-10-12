@@ -22,7 +22,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto px-4 py-16">
-        {/* Breadcrumb */}
         <nav className="mb-8">
           <a
             href="/blog"
@@ -40,7 +39,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </a>
         </nav>
 
-        {/* Imagem de capa */}
         {post.cover && (
           <div className="mb-8">
             <img
@@ -51,7 +49,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
 
-        {/* Header do artigo */}
         <header className="mb-12">
           {post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4">
@@ -79,12 +76,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </header>
 
-        {/* Conteúdo do artigo */}
         <article className="prose prose-lg max-w-none">
           <NotionRenderer blocks={blocks} />
         </article>
 
-        {/* Card do autor */}
         {post.author && (
           <div className="mt-12 p-6 bg-gray-50 rounded-lg border-l-4 border-blue-500">
             <div className="flex items-center">
