@@ -23,20 +23,28 @@ export const fetchPages = React.cache(async () => {
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID!,
     })
-    
+
     console.log('📊 Total de páginas encontradas:', response.results.length)
-    
+
     // Filtrar apenas páginas com status "Live" no código (se a propriedade existir)
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
-      console.log('🔍 Status da página:', status, 'Título:', getPropertyValue(page.properties, 'title'))
-      // Se não há propriedade Status, mostrar todos os posts
-      if (status === null) return true
-      return status === 'Live'
+      console.log(
+        '🔍 Status da página:',
+        status,
+        'Título:',
+        getPropertyValue(page.properties, 'title'),
+      )
+      
+      // Debug: mostrar todas as propriedades disponíveis
+      console.log('📋 Propriedades disponíveis:', Object.keys(page.properties))
+      
+      // Por enquanto, mostrar todos os posts independente do status
+      return true
     })
-    
+
     console.log('✅ Páginas filtradas:', livePages.length)
-    
+
     return {
       ...response,
       results: livePages,
@@ -104,7 +112,7 @@ export interface BlogPost {
 // Função para extrair propriedades de uma página do Notion
 export function extractBlogPost(page: PageObjectResponse): BlogPost {
   const properties = page.properties
-  
+
   const post = {
     id: page.id,
     title: getPropertyValue(properties, 'title') || 'Sem título',
@@ -114,7 +122,7 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
     publishedAt: getPropertyValue(properties, 'publishedAt') || page.created_time,
     tags: getPropertyValue(properties, 'tags') || [],
   }
-  
+
   console.log('📝 Post extraído:', post)
   return post
 }
@@ -122,7 +130,12 @@ export function extractBlogPost(page: PageObjectResponse): BlogPost {
 // Função auxiliar para extrair valores das propriedades
 function getPropertyValue(properties: any, key: string): any {
   const prop = properties[key]
-  if (!prop) return null
+  if (!prop) {
+    console.log(`⚠️ Propriedade '${key}' não encontrada`)
+    return null
+  }
+
+  console.log(`🔍 Propriedade '${key}':`, prop.type, prop)
 
   switch (prop.type) {
     case 'title':
