@@ -25,19 +25,14 @@ export async function testNotionConnection() {
   try {
     validateNotionConfig()
 
-    // Importar o cliente aqui para evitar problemas de inicialização
     const { notion } = await import('./notion')
 
-    const response = await notion.databases.retrieve({
+    await notion.databases.retrieve({
       database_id: process.env.NOTION_DATABASE_ID!,
     })
 
-    console.log('✅ Conexão com Notion estabelecida com sucesso!')
-    console.log('Database encontrado:', response.title?.[0]?.plain_text || 'Sem título')
-
     return true
-  } catch (error) {
-    console.error('❌ Erro na conexão com Notion:', error)
+  } catch {
     return false
   }
 }

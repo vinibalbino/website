@@ -31,8 +31,7 @@ export const fetchPages = React.cache(async () => {
       ...response,
       results: livePages,
     }
-  } catch (error) {
-    console.error('Erro ao buscar páginas:', error)
+  } catch {
     throw new Error('Falha ao conectar com o Notion. Verifique suas credenciais.')
   }
 })
@@ -56,8 +55,7 @@ export const fetchBySlug = React.cache(async (slug: string) => {
       },
     })
     return response.results[0] as PageObjectResponse | undefined
-  } catch (error) {
-    console.error('Erro ao buscar página por slug:', error)
+  } catch {
     throw new Error('Falha ao buscar artigo. Verifique suas credenciais.')
   }
 })
@@ -72,8 +70,7 @@ export const fetchPageBlocks = React.cache(async (pageId: string) => {
       block_id: pageId,
     })
     return response.results as BlockObjectResponse[]
-  } catch (error) {
-    console.error('Erro ao buscar blocos da página:', error)
+  } catch {
     throw new Error('Falha ao carregar conteúdo do artigo.')
   }
 })
