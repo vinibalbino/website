@@ -44,14 +44,14 @@ jobs:
             -d "{\"serviceId\": \"${{ steps.env.outputs.render_service_id }}\"}" \
             https://api.render.com/v1/services/${{ steps.env.outputs.render_service_id }}/deploys
 
-      - name: Mark deployment as successful
+            - name: Mark deployment as successful
         if: success()
         uses: chrnorm/deployment-status@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: success
-          deployment_id: ${{ steps.create_deploy.outputs.deployment_id }}
-          environment_url: ${{ steps.env.outputs.env_url }}
+          deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
+          environment-url: ${{ steps.env.outputs.env_url }}
 
       - name: Mark deployment as failed
         if: failure()
@@ -59,4 +59,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: failure
-          deployment_id: ${{ steps.create_deploy.outputs.deployment_id }}
+          deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
