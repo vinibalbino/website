@@ -5,7 +5,8 @@ export const faqs: IFAQ[] = [
   {
     question: `O ${siteDetails.siteName} é seguro?`,
     answer:
-      'Absolutamente. Usamos criptografia de nível bancário para proteger seus dados e nunca armazenamos suas informações de login. É por isso que você pode se sentir totalmente seguro para dar o primeiro passo e começar a construir sua vida da forma correta com o Diaum!',  },
+      'Absolutamente. Usamos criptografia de nível bancário para proteger seus dados e nunca armazenamos suas informações de login. É por isso que você pode se sentir totalmente seguro para dar o primeiro passo e começar a construir sua vida da forma correta com o Diaum!',
+  },
   {
     question: `Posso usar o ${siteDetails.siteName} em múltiplos dispositivos?`,
     answer:
@@ -13,8 +14,7 @@ export const faqs: IFAQ[] = [
   },
   {
     question: 'Posso bloquear todos os tipos de conteúdo?',
-    answer: 
-      `Sim! O ${siteDetails.siteName} oferece bloqueio completo de conteúdo inadequado e sites de pornografia. Nosso objetivo é te ajudar a estar presente e tomar as melhores decisões sem ser sabotado!`,
+    answer: `Sim! O ${siteDetails.siteName} oferece bloqueio completo de conteúdo inadequado e sites de pornografia. Nosso objetivo é te ajudar a estar presente e tomar as melhores decisões sem ser sabotado!`,
   },
   {
     question: 'Preciso de experiência para usar os recursos de bloqueio?',

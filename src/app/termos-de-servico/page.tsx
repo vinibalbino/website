@@ -11,13 +11,17 @@ export default function TermsOfServicePage() {
     <Container className="py-16 lg:py-28">
       {/* LOGO E TÍTULO */}
       <div className="flex flex-col items-start mb-10">
-        <span className="text-3xl text-slate-700 font-bold mt-2 ml-1 drop-shadow-sm">Termos de Serviço</span>
+        <span className="text-3xl text-slate-700 font-bold mt-2 ml-1 drop-shadow-sm">
+          Termos de Serviço
+        </span>
       </div>
       {/* TERMOS ORIGINAIS */}
-      <div className="prose max-w-7xl prose-slate dark:prose-invert bg-white/90 rounded-xl shadow-lg px-8 py-10
+      <div
+        className="prose max-w-7xl prose-slate dark:prose-invert bg-white/90 rounded-xl shadow-lg px-8 py-10
         prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-800 prose-p:leading-relaxed
         prose-h2:mt-8 prose-h2:mb-2 prose-h2:text-lg prose-h2:font-bold prose-h2:text-slate-800
-        prose-strong:text-slate-900 prose-strong:font-bold">
+        prose-strong:text-slate-900 prose-strong:font-bold"
+      >
         <h1 className="hidden">Termos de Serviço</h1>
 
         <p>
