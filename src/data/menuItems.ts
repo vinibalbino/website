@@ -7,7 +7,7 @@ export const menuItems: IMenuItem[] = [
   },
   {
     text: 'Blog',
-    url: '#blog',
+    url: '/blog',
   },
   {
     text: 'Sobre Nós',

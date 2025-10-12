@@ -12,6 +12,10 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@next/third-parties": "^14.2.13",
+    "@notion-render/bookmark-plugin": "^0.0.2",
+    "@notion-render/client": "^0.0.2",
+    "@notion-render/hljs-plugin": "^0.0.2",
+    "@notionhq/client": "^2.2.14",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.9",
     "next": "^14.2.13",
