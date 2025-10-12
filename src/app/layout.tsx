@@ -14,14 +14,22 @@ const sourceSans = Source_Sans_3({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: siteDetails.metadata.title,
   description: siteDetails.metadata.description,
-  keywords: [`${siteDetails.siteName}`, 'app', 'bloqueio', 'conteúdo', 'pornografia', 'hábitos', 'foco', 'controle', 'vida'],
+  keywords: [
+    `${siteDetails.siteName}`,
+    'app',
+    'bloqueio',
+    'conteúdo',
+    'pornografia',
+    'hábitos',
+    'foco',
+    'controle',
+    'vida',
+  ],
   authors: [{ name: siteDetails.siteName }],
   creator: siteDetails.siteName,
   publisher: siteDetails.siteName,
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
   },
   robots: {
     index: true,
