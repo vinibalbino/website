@@ -23,7 +23,7 @@ export const fetchPages = React.cache(async () => {
 
     const livePages = response.results.filter((page: any) => {
       const status = getPropertyValue(page.properties, 'Status')
-      return status === 'Concluído' || status === null
+      return status === 'Publicado' || status === null
     })
 
     return {
@@ -112,7 +112,7 @@ function getAuthorAvatar(properties: any, key: string): string {
   if (!prop || prop.type !== 'people' || !prop.people?.[0]) {
     return ''
   }
-  
+
   const person = prop.people[0]
   return person.avatar_url || person.person?.avatar_url || ''
 }
