@@ -1,16 +1,39 @@
-name: Deploy to Render
+name: Deploy to Render (Production & Develop)
 
 on:
   push:
     branches:
       - production
+      - develop
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set environment
+        id: env
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "production" ]]; then
+            echo "env_name=production" >> $GITHUB_OUTPUT
+            echo "render_service_id=${{ secrets.RENDER_SERVICE_ID_PROD }}" >> $GITHUB_OUTPUT
+            echo "env_url=https://seuapp-production.onrender.com" >> $GITHUB_OUTPUT
+          else
+            echo "env_name=develop" >> $GITHUB_OUTPUT
+            echo "render_service_id=${{ secrets.RENDER_SERVICE_ID_DEV }}" >> $GITHUB_OUTPUT
+            echo "env_url=https://seuapp-develop.onrender.com" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub deployment
+        id: create_deploy
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ steps.env.outputs.env_name }}
+          description: 'Render deploy triggered for ${{ steps.env.outputs.env_name }}'
 
       - name: Trigger Render deploy
         run: |
@@ -18,5 +41,22 @@ jobs:
             -H "Accept: application/json" \
             -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{"serviceId": "${{ secrets.RENDER_SERVICE_ID }}"}' \
-            https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys
+            -d "{\"serviceId\": \"${{ steps.env.outputs.render_service_id }}\"}" \
+            https://api.render.com/v1/services/${{ steps.env.outputs.render_service_id }}/deploys
+
+      - name: Mark deployment as successful
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          deployment_id: ${{ steps.create_deploy.outputs.deployment_id }}
+          environment_url: ${{ steps.env.outputs.env_url }}
+
+      - name: Mark deployment as failed
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: failure
+          deployment_id: ${{ steps.create_deploy.outputs.deployment_id }}
