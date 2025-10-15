@@ -2,8 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { fetchPages, extractBlogPost } from '@/lib/notion'
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { getTranslations } from 'next-intl/server'
 
 export default async function BlogPage() {
+  const translation = await getTranslations('blog')
+
   try {
     const response = await fetchPages()
     const posts = response.results
@@ -11,13 +14,11 @@ export default async function BlogPage() {
       .map((page: PageObjectResponse) => extractBlogPost(page))
 
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white mt-10">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
-            <p className="text-xl text-gray-600">
-              Artigos e insights sobre tecnologia e desenvolvimento
-            </p>
+            <p className="text-xl text-gray-600">{translation('headline')}</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -88,7 +89,7 @@ export default async function BlogPage() {
                       href={`/blog/${post.slug}`}
                       className="text-blue-600 hover:text-blue-800 font-medium"
                     >
-                      Ler mais →
+                      {translation('labelLinks.readMore')}
                     </Link>
                   </div>
                 </div>

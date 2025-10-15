@@ -108,5 +108,16 @@
     "sendEmailTo": "Enviar e-mail para {email}",
     "callTo": "Ligar para {phone}",
     "socials": "Redes sociais"
+  },
+  "blog": {
+    "headline": "Artigos e insights sobre tecnologia e desenvolvimento",
+    "labelLinks": {
+      "readMore": "Ler mais →",
+      "goBackBlog": "Voltar ao blog"
+    },
+    "article": {
+      "writtenBy": "Escrito por",
+      "publishedAt": "Publicado em"
+    }
   }
 }

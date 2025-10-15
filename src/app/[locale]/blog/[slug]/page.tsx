@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { fetchBySlug, fetchPageBlocks, extractBlogPost } from '@/lib/notion'
-import { NotionRenderer } from '../../../components/NotionRenderer'
+import { NotionRenderer } from '@/components/NotionRenderer'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 interface BlogPostPageProps {
   params: {
@@ -16,11 +17,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  const translation = await getTranslations('blog')
+  const locale = await getLocale()
   const post = extractBlogPost(page)
   const blocks = await fetchPageBlocks(page.id)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white mt-16">
       <div className="max-w-4xl mx-auto px-4 py-16">
         <nav className="mb-8">
           <a
@@ -35,7 +38,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Voltar ao blog
+            {translation('labelLinks.goBackBlog')}
           </a>
         </nav>
 
@@ -69,7 +72,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="flex items-center text-gray-600">
             <time className="text-lg">
-              {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+              {new Date(post.publishedAt).toLocaleDateString(locale, {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -99,11 +102,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               )}
               <div>
-                <p className="text-sm text-gray-600 mb-1">Escrito por</p>
+                <p className="text-sm text-gray-600 mb-1">{translation('article.writtenBy')}</p>
                 <p className="text-xl font-semibold text-gray-900">{post.author}</p>
                 <p className="text-sm text-gray-500 mt-1">
-                  Publicado em{' '}
-                  {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+                  {translation('article.publishedAt')}{' '}
+                  {new Date(post.publishedAt).toLocaleDateString(locale, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
