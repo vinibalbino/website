@@ -8,8 +8,7 @@
   },
   "header": {
     "features": "Features",
-    "pricing": "Pricing",
-    "testimonials": "Testimonials"
+    "aboutUs": "About us"
   },
   "homePage": {
     "heroComponent": {
