@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - production
+      - develop
 
 jobs:
   deploy:
@@ -14,9 +15,15 @@ jobs:
 
       - name: Trigger Render deploy
         run: |
+          if [ "${GITHUB_REF##*/}" = "production" ]; then
+            SERVICE_ID="${{ secrets.RENDER_SERVICE_ID_PROD }}"
+          else
+            SERVICE_ID="${{ secrets.RENDER_SERVICE_ID_DEV }}"
+          fi
+
           curl -X POST \
             -H "Accept: application/json" \
             -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{"serviceId": "${{ secrets.RENDER_SERVICE_ID }}"}' \
-            https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys
+            -d "{\"serviceId\": \"$SERVICE_ID\"}" \
+            https://api.render.com/v1/services/$SERVICE_ID/deploys

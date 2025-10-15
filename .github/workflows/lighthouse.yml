@@ -1,0 +1,33 @@
+name: Lighthouse
+on:
+  push:
+    branches:
+      - develop
+      - production
+  pull_request:
+    branches:
+      - develop
+      - production
+
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.15.x
+          npm run start &
+          npx wait-on http://localhost:3000
+          lhci autorun --collect.url=http://localhost:3000 --upload.target=temporary-public-storage
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

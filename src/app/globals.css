@@ -18,11 +18,10 @@
 
   --footer-background: #2d2d2d;
   --footer-text: #f3f3f5;
-  --footer-link: #E1FF57;
-  --footer-link-hover: #F7FF9F;
-  --footer-divider: linear-gradient(90deg, #E1FF57, #F7FF9F, #E1FF57);
+  --footer-link: #e1ff57;
+  --footer-link-hover: #f7ff9f;
+  --footer-divider: linear-gradient(90deg, #e1ff57, #f7ff9f, #e1ff57);
 }
-
 
 html {
   @apply scroll-smooth;

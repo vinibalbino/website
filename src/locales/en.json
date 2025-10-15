@@ -8,8 +8,7 @@
   },
   "header": {
     "features": "Features",
-    "pricing": "Pricing",
-    "testimonials": "Testimonials"
+    "aboutUs": "About us"
   },
   "homePage": {
     "heroComponent": {
@@ -109,5 +108,16 @@
     "sendEmailTo": "Send email to {email}",
     "callTo": "Call to {phone}",
     "socials": "Social media"
+  },
+  "blog": {
+    "headline": "Articles and insights on technology and development",
+    "labelLinks": {
+      "readMore": "Read more →",
+      "goBackBlog": "Go back to blog"
+    },
+    "article": {
+      "writtenBy": "Written by",
+      "publishedAt": "Published at"
+    }
   }
 }

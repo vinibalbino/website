@@ -4,15 +4,15 @@ export function getMenuItems(t: TTranslateFunction): IMenuItem[] {
   return [
     {
       text: t('features'),
-      url: '#features',
+      url: '#funcionalidades',
     },
     {
-      text: t('pricing'),
-      url: '#pricing',
+      text: 'Blog',
+      url: '/blog',
     },
     {
-      text: t('testimonials'),
-      url: '#testimonials',
+      text: t('aboutUs'),
+      url: '#sobreNos',
     },
   ]
 }
